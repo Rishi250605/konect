@@ -25,8 +25,10 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <i className="fas fa-globe"></i>
-            <span>Groups</span>
+            <Link to="/groups">
+              <i className="fas fa-globe"></i>
+              <span>Groups</span>
+            </Link>
           </li>
           <li>
             <i className="fas fa-video"></i>
