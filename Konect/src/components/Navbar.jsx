@@ -1,9 +1,15 @@
 import React from 'react';
+import './Navbar.css';
 
-export default function Navbar() {
-  return (
-    <div className="bg-white shadow-md py-3 px-6 ">
-      <h1 className="text-lg font-semibold">Konect</h1>
-    </div>
-  );
-}
+const Navbar = () => {
+    return (
+        <nav className="navbar">
+            <div className="navbar-content">
+                <h1>Community Hub</h1>
+                {/* Add your navbar content here */}
+            </div>
+        </nav>
+    );
+};
+
+export default Navbar;

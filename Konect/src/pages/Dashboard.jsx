@@ -1,10 +1,13 @@
 import React from 'react'
-import Post from '../components/Post'
+import './Dashboard.css'
 
-export default function Dashboard() {
+const Dashboard = () => {
   return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      {/* <Post post={"asdf"} /> */}
+    <div className="dashboard">
+      <h2>Dashboard</h2>
+      {/* Add your dashboard content here */}
     </div>
   )
 }
+
+export default Dashboard

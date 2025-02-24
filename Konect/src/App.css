@@ -1,5 +1,19 @@
 .app-container {
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 3rem; /* Height of footer */
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 3rem; /* Height of footer */
+}
+
+.main-content {
+    display: flex;
+    min-height: calc(100vh - 60px - 3rem); /* subtract navbar and footer height */
+    padding-top: 60px; /* navbar height */
+}
+
+/* Hide Navbar and Sidebar on login/register pages */
+.login-page .navbar,
+.login-page .sidebar,
+.register-page .navbar,
+.register-page .sidebar {
+    display: none;
 }

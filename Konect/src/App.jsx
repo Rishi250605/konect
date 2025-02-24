@@ -11,21 +11,26 @@ import Dashboard from './pages/Dashboard';
 function App() {
     return (
         <Router>
-
             <div className="app-container">
                 <Routes>
-                <Route path="/login" element={<Login />} />
-            </Routes>
-            <Navbar/>
-            <Sidebar/>
-            <Routes>
-                <Route path="/register" element={<Register />} />
-                <Route path="/" element={<Navigate to="/login" replace />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route 
+                        path="/dashboard" 
+                        element={
+                            <>
+                                <Navbar />
+                                <div className="main-content">
+                                    <Sidebar />
+                                    <Dashboard />
+                                </div>
+                            </>
+                        } 
+                    />
+                    <Route path="/" element={<Navigate to="/login" replace />} />
+                </Routes>
                 <Footer />
             </div>
-
         </Router>
     );
 }
