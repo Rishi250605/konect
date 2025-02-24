@@ -1,0 +1,361 @@
+.about-page {
+  width: 100%;
+  background-color: #f0f2f5;
+  overflow-x: hidden;
+  padding-right: 1rem;
+}
+
+.about-hero-section {
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+  color: white;
+  padding: 6rem 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-shape {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: #f0f2f5;
+  clip-path: polygon(0 50%, 100% 0, 100% 100%, 0% 100%);
+}
+
+.hero-content {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.highlight {
+  color: #00bcd4;
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: rgba(0, 188, 212, 0.2);
+  z-index: -1;
+}
+
+.hero-description {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.features-section {
+  margin-bottom: 7rem;
+}
+
+.features-section h2,
+.team-section h2 {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  color: #1a237e;
+  font-weight: 700;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  transform-origin: center;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--gradient-start, #00bcd4), var(--gradient-end, #1a237e));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+  transform-origin: left;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px) scale(1.03);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card i {
+  font-size: 3rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+.feature-card i.fa-chart-line {
+  background: linear-gradient(135deg, #00bcd4, #4caf50);
+}
+
+.feature-card i.fa-mobile-alt {
+  background: linear-gradient(135deg, #00bcd4, #ff4081);
+}
+
+.team-section {
+  padding: 4rem 0;
+  background: white;
+  border-radius: 30px;
+  margin: 2rem 0;
+}
+
+.team-intro {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #666;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.developers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.developer-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  max-width: 250px;
+  cursor: pointer;
+  position: relative;
+}
+
+.dev-image-container {
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dev-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.dev-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+/* Unique styles for each developer card */
+.card-1 .dev-overlay {
+  background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(76, 175, 80, 0.7));
+}
+
+.card-2 .dev-overlay {
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.9), rgba(33, 150, 243, 0.7));
+}
+
+.card-3 .dev-overlay {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.9), rgba(156, 39, 176, 0.7));
+}
+
+.card-4 .dev-overlay {
+  background: linear-gradient(135deg, rgba(255, 64, 129, 0.9), rgba(255, 64, 129, 0.7));
+}
+
+.developer-card.active .dev-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.developer-card.active .dev-image-container img {
+  transform: scale(1.1);
+}
+
+.dev-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.dev-info h3 {
+  color: var(--card-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.25rem;
+}
+
+.dev-info h4 {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.dev-info p {
+  font-size: 0.85rem;
+  color: #888;
+  display: block;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.developer-card.active .social-links {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Unique social link styles for each card */
+.card-1 .social-links a {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #4CAF50;
+}
+
+.card-2 .social-links a {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #2196F3;
+}
+
+.card-3 .social-links a {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #9C27B0;
+}
+
+.card-4 .social-links a {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #FF4081;
+}
+
+.social-links a {
+  color: white;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.developer-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.5);
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 2rem 0;
+}
+
+@media (max-width: 1200px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .developers-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.8rem;
+  }
+
+  .about-hero-section {
+    padding: 4rem 1rem;
+  }
+
+  .about-content {
+    padding: 0 1rem;
+  }
+
+  .features-section h2,
+  .team-section h2 {
+    font-size: 2.3rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .developers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .developer-card {
+    max-width: none;
+  }
+
+  .team-section {
+    padding: 4rem 0;
+    margin: 1rem 0;
+  }
+
+  .dev-image-container {
+    height: 200px;
+  }
+}
