@@ -241,4 +241,165 @@
   border-radius: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+}
+
+/* Add these new styles */
+
+/* Tooltip styles */
+.tooltip-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #18191c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Search bar styles */
+.search-bar {
+  padding: 10px 16px;
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Chat content wrapper */
+.chat-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Members sidebar styles */
+.members-sidebar {
+  width: 240px;
+  background-color: white;
+  border-left: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+}
+
+.members-header {
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.members-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.members-list {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.members-category {
+  margin-bottom: 24px;
+}
+
+.members-category h4 {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.member-item {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.member-item:hover {
+  background-color: #f0f2f5;
+  border-radius: 4px;
+}
+
+.member-avatar {
+  position: relative;
+  margin-right: 12px;
+}
+
+.member-avatar img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.status-indicator {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.status-indicator.online {
+  background-color: #3ba55c;
+}
+
+.status-indicator.idle {
+  background-color: #faa61a;
+}
+
+.status-indicator.offline {
+  background-color: #747f8d;
+}
+
+.member-name {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Update chat messages to accommodate members sidebar */
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .members-sidebar {
+    width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .members-sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    z-index: 10;
+  }
 } 
