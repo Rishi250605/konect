@@ -16,6 +16,7 @@ import Communities from "./pages/Communities";
 import CommunityPage from "./pages/CommunityPage";
 import About from "./pages/About";
 import Groups from './pages/Groups';
+import Events from './pages/Events';
 
 function App() {
   return (
@@ -56,6 +57,18 @@ function App() {
                 <div className="main-content">
                   <Sidebar />
                   <Dashboard />
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <>
+                <Navbar />
+                <div className="main-content">
+                  <Sidebar />
+                  <Events />
                 </div>
               </>
             }
