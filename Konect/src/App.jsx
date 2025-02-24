@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard";
 import Communities from "./pages/Communities";
 import CommunityPage from "./pages/CommunityPage";
 import About from "./pages/About";
+import Groups from './pages/Groups';
 
 function App() {
   return (
@@ -67,6 +68,18 @@ function App() {
                 <div className="main-content">
                   <Sidebar />
                   <About />
+                </div>
+              </>
+            }
+          />
+          <Route
+            path="/groups"
+            element={
+              <>
+                <Navbar />
+                <div className="main-content">
+                  <Sidebar />
+                  <Groups />
                 </div>
               </>
             }
