@@ -90,6 +90,7 @@ function App() {
                   <Sidebar />
                   <Events />
                 </div>
+                <AIAssistant />
               </>
             }
           />
