@@ -3,9 +3,9 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 60px;
-    background: #0f172a;
-    color: white;
+    height: 48px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     z-index: 100;
 }
 
@@ -16,4 +16,86 @@
     height: 100%;
     display: flex;
     align-items: center;
+}
+
+.navbar-left h1 {
+    color: #1a1a1b;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.navbar-search {
+    flex: 1;
+    max-width: 600px;
+}
+
+.navbar-search input {
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #edeff1;
+    background: #f6f7f8;
+    font-size: 14px;
+}
+
+.navbar-search input:focus {
+    background: white;
+    border-color: #0079d3;
+    outline: none;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icon-button {
+    padding: 8px;
+    border: none;
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #1a1a1b;
+}
+
+.icon-button:hover {
+    background: #f6f7f8;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.user-profile:hover {
+    background: #f6f7f8;
+}
+
+.user-profile img {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+}
+
+.user-profile span {
+    font-size: 14px;
+    color: #1a1a1b;
+}
+
+.logo {
+    color: #1a1a1b;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: auto;
+    padding-right: 2rem;
 } 

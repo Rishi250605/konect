@@ -1,7 +1,61 @@
 .sidebar {
-    width: 250px;
-    background: #1e293b;
+    width: 270px;
+    background: white;
     min-height: 100%;
     padding: 1rem;
-    color: white;
+    border-right: 1px solid #edeff1;
+}
+
+.sidebar-section {
+    margin-bottom: 2rem;
+}
+
+.sidebar-section h3 {
+    color: #1a1a1b;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+}
+
+.community-list {
+    list-style: none;
+}
+
+.community-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #1a1a1b;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.community-list li:hover {
+    background: #f6f7f8;
+}
+
+.community-list img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.community-list i {
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #878a8c;
+}
+
+.community-list li.active {
+    background: #f6f7f8;
+    color: #0079d3;
+}
+
+.community-list li.active i {
+    color: #0079d3;
 } 

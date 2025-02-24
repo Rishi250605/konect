@@ -1,5 +1,129 @@
 .dashboard {
     flex: 1;
-    padding: 2rem;
-    background: #f1f5f9;
+    padding: 1.5rem;
+    background: #dae0e6;
+}
+
+.post-filters {
+    background: white;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #878a8c;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background: #f6f7f8;
+}
+
+.filter-btn.active {
+    background: #f6f7f8;
+    color: #0079d3;
+}
+
+.post-card {
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    display: flex;
+    overflow: hidden;
+}
+
+.post-votes {
+    background: #f8f9fa;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.post-votes button {
+    border: none;
+    background: none;
+    color: #878a8c;
+    cursor: pointer;
+}
+
+.post-votes button:hover {
+    color: #0079d3;
+}
+
+.post-content {
+    flex: 1;
+    padding: 0.75rem;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.post-header img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.community-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #1a1a1b;
+}
+
+.post-meta {
+    font-size: 12px;
+    color: #787c7e;
+}
+
+.post-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1a1a1b;
+    margin-bottom: 0.5rem;
+}
+
+.post-text {
+    font-size: 14px;
+    color: #1a1a1b;
+    margin-bottom: 0.75rem;
+    max-height: 250px;
+    overflow: hidden;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.post-actions button {
+    border: none;
+    background: none;
+    color: #878a8c;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.post-actions button:hover {
+    background: #f6f7f8;
 } 
