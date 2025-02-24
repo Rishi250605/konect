@@ -1,5 +1,5 @@
 import express from "express";
-import { Community } from "../db";
+import { Community } from "../db.js";
 
 const communityRouter = express.Router();
 
