@@ -15,6 +15,8 @@ import Dashboard from "./pages/Dashboard";
 import Communities from "./pages/Communities";
 import CommunityPage from "./pages/CommunityPage";
 import About from "./pages/About";
+import Groups from './pages/Groups';
+import Events from './pages/Events';
 import Groups from "./pages/Groups";
 import AIAssistant from "./components/AIAssistant";
 
@@ -77,6 +79,18 @@ function App() {
                   <Dashboard />
                 </div>
                 <AIAssistant />
+              </>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <>
+                <Navbar />
+                <div className="main-content">
+                  <Sidebar />
+                  <Events />
+                </div>
               </>
             }
           />

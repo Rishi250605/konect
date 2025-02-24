@@ -6,6 +6,7 @@ const Sidebar = () => {
   const location = useLocation();
   const isHome = location.pathname === "/dashboard";
   const isCommunities = location.pathname === "/communities";
+  const isEvents = location.pathname === "/events";
 
   return (
     <div className="sidebar">
@@ -22,6 +23,12 @@ const Sidebar = () => {
             <Link to="/communities">
               <i className="fas fa-users"></i>
               <span>Communities</span>
+            </Link>
+          </li>
+          <li className={isEvents ? "active" : ""}>
+            <Link to="/events">
+              <i className="fas fa-calendar-alt"></i>
+              <span>Events</span>
             </Link>
           </li>
           <li>
