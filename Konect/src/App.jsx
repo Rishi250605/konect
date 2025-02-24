@@ -7,6 +7,8 @@ import './App.css'
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar'
 import Dashboard from './pages/Dashboard';
+import Communities from './pages/Communities';
+import CommunityPage from './pages/CommunityPage';
 
 function App() {
     return (
@@ -15,6 +17,30 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route 
+                        path="/communities" 
+                        element={
+                            <>
+                                <Navbar />
+                                <div className="main-content">
+                                    <Sidebar />
+                                    <Communities />
+                                </div>
+                            </>
+                        } 
+                    />
+                    <Route 
+                        path="/community/:id" 
+                        element={
+                            <>
+                                <Navbar />
+                                <div className="main-content">
+                                    <Sidebar />
+                                    <CommunityPage />
+                                </div>
+                            </>
+                        } 
+                    />
                     <Route 
                         path="/dashboard" 
                         element={

@@ -145,6 +145,16 @@
     color: #60a5fa;
 }
 
+.error-message {
+    background: #fee2e2;
+    border: 1px solid #ef4444;
+    color: #dc2626;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
 @media (max-width: 768px) {
     .container {
         grid-template-columns: 1fr;

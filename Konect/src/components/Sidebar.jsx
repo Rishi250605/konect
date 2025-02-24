@@ -1,10 +1,11 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import './Sidebar.css';
 
 const Sidebar = () => {
     const location = useLocation();
     const isHome = location.pathname === '/dashboard';
+    const isCommunities = location.pathname === '/communities';
 
     return (
         <div className="sidebar">
@@ -12,16 +13,20 @@ const Sidebar = () => {
                 <h3>Menu</h3>
                 <ul className="community-list">
                     <li className={isHome ? 'active' : ''}>
-                        <i className="fas fa-home"></i>
-                        <span>Home</span>
+                        <Link to="/dashboard">
+                            <i className="fas fa-home"></i>
+                            <span>Home</span>
+                        </Link>
                     </li>
-                    <li>
-                        <i className="fas fa-users"></i>
-                        <span>Groups</span>
+                    <li className={isCommunities ? 'active' : ''}>
+                        <Link to="/communities">
+                            <i className="fas fa-users"></i>
+                            <span>Communities</span>
+                        </Link>
                     </li>
                     <li>
                         <i className="fas fa-globe"></i>
-                        <span>Communities</span>
+                        <span>Groups</span>
                     </li>
                     <li>
                         <i className="fas fa-video"></i>
