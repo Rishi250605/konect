@@ -1,0 +1,5 @@
+.app-container {
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 3rem; /* Height of footer */
+}
