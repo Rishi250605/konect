@@ -49,25 +49,13 @@ const userSchema = new mongoose.Schema({
 
 const CommunitySchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
-  description: String,
-  tags : [{
-    type : mongoose.Schema.Types.ObjectId,
-    ref : "Tag"
-}] 
+  description: {type : String},
+  tags: [{ type: String }],
 }
 );
-
-const tagsSchema = new mongoose.Schema({
-  title : {
-      type : String,
-      required : true,
-      unique : true
-  }
-})
 
 
 const User = mongoose.model('User', userSchema);
 const Post = mongoose.model("Post", postSchema);
-const Tags = mongoose.model("Tags", tagsSchema);
 const Community = mongoose.model("Community", CommunitySchema);
-export { User, Post, Tags, Community };
+export { User, Post,  Community };

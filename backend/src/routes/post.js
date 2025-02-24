@@ -39,16 +39,13 @@ const upload = multer({
 postRouter.post('/create', upload.single('image'), async (req, res) => {
     try {
         const { title, body, tag } = req.body;
-        
         const newPost = new Post({
             title,
             body,
             tag,
             image: req.file ? req.file.path : null
         });
-
         await newPost.save();
-
         res.status(201).json({
             message: 'Post created successfully',
             post: newPost
