@@ -11,15 +11,14 @@ db.once("open", () => console.log("MongoDB connected"));
 
 // Define Post Schema
 const postSchema = new mongoose.Schema({
-  image: { type: String, default: null },
-  title: { type: String, required: true },
-  body: { type: String, required: true },
-  community: { type: mongoose.Schema.Types.ObjectId, ref: 'Community' },
-  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Referencing User
-  tags: [{ type: String }], // Tags for filtering
-  createdAt: { type: Date, default: Date.now },
-});
-
+    image: { type: String, default: null },
+    title: { type: String, required: true },
+    body: { type: String, required: true },
+    community: { type: mongoose.Schema.Types.ObjectId, ref: 'Community' },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    tags: [{ type: String }],
+    createdAt: { type: Date, default: Date.now },
+  });
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -30,7 +29,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    mailid: {
+    email: {
         type: String,
         required: true,
         unique: true,

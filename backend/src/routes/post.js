@@ -38,13 +38,17 @@ const upload = multer({
 // Create a new post with image upload
 postRouter.post('/create', upload.single('image'), async (req, res) => {
     try {
-        const { title, body, tag } = req.body;
+        const { title, body, tag , community, user} = req.body;
+        
         const newPost = new Post({
+            image: req.file ? req.file.path : null,
             title,
             body,
+            community,
+            user,
             tag,
-            image: req.file ? req.file.path : null
         });
+        console.log("full post",newPost);
         await newPost.save();
         res.status(201).json({
             message: 'Post created successfully',
@@ -61,9 +65,11 @@ postRouter.post('/create', upload.single('image'), async (req, res) => {
 
 // Get all posts
 postRouter.get('/all', async (req, res) => {
+    console.log("entred post all");
     try {
-        const posts = await Post.find().sort({ createdAt: -1 });
+        const posts = await Post.find().populate("community").populate("user");
         res.json(posts);
+        console.log("all posts data",posts)
     } catch (error) {
         res.status(500).json({
             message: 'Error fetching posts',

@@ -1,0 +1,189 @@
+.community-card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0 auto 16px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease;
+  max-width: 640px; /* Reddit's main content width */
+  width: 100%;
+}
+
+.community-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-avatar-placeholder {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.username {
+  font-weight: 600;
+  color: #1a1a1b;
+  font-size: 14px;
+}
+
+.community-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #787c7e;
+}
+
+.community-name {
+  color: #1a1a1b;
+  font-weight: 500;
+}
+
+.post-time {
+  color: #787c7e;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 8px 0;
+  color: #1a1a1b;
+}
+
+.card-description {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1a1a1b;
+  margin: 8px 0;
+}
+
+.post-image-container {
+  margin: 12px 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.post-image.hovered {
+  transform: scale(1.01);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.tag {
+  background-color: #f6f7f8;
+  color: #3d467f;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #edeff1;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 8px;
+  color: #878a8c;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.action-button:hover {
+  background-color: #f6f7f8;
+  color: #1a1a1b;
+}
+
+.action-button i {
+  font-size: 16px;
+}
+
+.like-button.liked {
+  color: #ff4500;
+}
+
+.like-button.liked i {
+  color: #ff4500;
+}
+
+.bookmark-button:hover {
+  color: #3d467f;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .community-card {
+    max-width: 100%;
+    margin: 0 auto 16px;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .community-card {
+    padding: 8px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-actions {
+    gap: 8px;
+  }
+
+  .action-button span {
+    display: none;
+  }
+}
