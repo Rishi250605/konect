@@ -6,19 +6,20 @@ import { User } from '../db.js';
 const authRouter = express.Router();
 
 authRouter.post('/signup', async (req, res) => {
+    console.log("entered /signup");
     try {
-        const { username, password, mailid, yearofstudy } = req.body;
+        const { username, password, email, yearofstudy } = req.body;
 
         // Check email domain
-        if (!mailid.endsWith('@rajalakshmi.edu.in')) {
-            return res.status(400).json({ 
-                message: 'Only rajalakshmi.edu.in email addresses are allowed' 
-            });
-        }
+        // if (!mailid.endsWith('@rajalakshmi.edu.in')) {
+        //     return res.status(400).json({ 
+        //         message: 'Only rajalakshmi.edu.in email addresses are allowed' 
+        //     });
+        // }
 
         // Check if user already exists
         const existingUser = await User.findOne({ 
-            $or: [{ username }, { mailid }] 
+            $or: [{ username }, { email }] 
         });
         
         if (existingUser) {

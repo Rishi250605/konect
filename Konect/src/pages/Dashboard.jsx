@@ -1,7 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Dashboard.css'
+// import { PostCad } from '../components/PostCard'
+import axios from 'axios'
+import { Card } from '../components/Card'
 
 const Dashboard = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    const getAllPost = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("http://localhost:5000/api/v1/post/all");
+        console.log("All posts", response.data);
+        setPosts(response.data);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    getAllPost(); 
+  }, [])
+
+  if (loading) {
+    return <div className="dashboard">Loading posts...</div>;
+  }
+
+  if (error) {
+    return <div className="dashboard">Error: {error}</div>;
+  }
+
   return (
     <div className="dashboard">
       <div className="post-filters">
@@ -12,28 +44,24 @@ const Dashboard = () => {
       </div>
       
       <div className="posts">
-        {[1, 2, 3, 4, 5].map((post) => (
-          <div key={post} className="post-card">
-            <div className="post-votes">
-              <button><i className="fas fa-arrow-up"></i></button>
-              <span>1.2k</span>
-              <button><i className="fas fa-arrow-down"></i></button>
-            </div>
-            <div className="post-content">
-              <div className="post-header">
-                <img src="https://via.placeholder.com/24" alt="Community" />
-                <span className="community-name">r/programming</span>
-                <span className="post-meta">Posted by u/username • 5 hours ago</span>
-              </div>
-              <h3 className="post-title">This is a sample post title</h3>
-              <p className="post-text">This is the post content. It can be quite long and will be truncated if it exceeds the maximum height.</p>
-              <div className="post-actions">
-                <button><i className="fas fa-comment"></i> 234 Comments</button>
-                <button><i className="fas fa-share"></i> Share</button>
-                <button><i className="fas fa-bookmark"></i> Save</button>
-              </div>
-            </div>
-          </div>
+        {/* <PostCard/> */}
+        {posts.map((post, index) => (
+          <Card
+            key={post._id || index}
+            title={post.title}
+            body={post.body}
+            image={post.image ? `http://localhost:5000/${post.image}` : null}
+            user={post.user || {
+              username: "Anonymous",
+              avatar: null
+            }}
+            community={post.community || {
+              name: "General"
+            }}
+            tags={post.tags || []}
+            createdAt={post.createdAt || new Date()}
+            likes={0}
+          />
         ))}
       </div>
     </div>

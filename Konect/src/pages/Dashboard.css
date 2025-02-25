@@ -126,4 +126,26 @@
 
 .post-actions button:hover {
     background: #f6f7f8;
+}
+
+.dashboard-container {
+    padding: 20px;
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #dae0e6;
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    width: 100%;
+}
+
+@media (max-width: 960px) {
+    .dashboard-container {
+        padding: 0;
+    }
 } 
