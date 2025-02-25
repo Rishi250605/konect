@@ -1,72 +1,71 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import PostCreator from '../components/PostCreator';
-import './CommunityPage.css';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import PostCreator from "../components/PostCreator";
+import "./CommunityPage.css";
+import axios from "axios";
 
 const CommunityPage = () => {
     const { id } = useParams();
     const [isCreatingPost, setIsCreatingPost] = useState(false);
+    const [communityInfo, setCommunityInfo] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [posts , setPosts] = useState({});
 
-    const communityInfo = {
-        name: 'Frontend Development',
-        description: 'A community for frontend developers to share knowledge, ask questions, and discuss the latest trends in web development.',
-        members: 12543,
-        online: 342,
-        createdAt: '2023',
-        tags: ['React', 'JavaScript', 'CSS', 'Web Development', 'UI/UX'],
-        banner: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6'
+    const getCommunityDetails = async (id) => {
+        try {
+            setLoading(true);
+            const response = await axios.get(`http://localhost:5000/api/v1/community/${id}`);
+            console.log("Fetched community data:", response.data);
+            setCommunityInfo(response.data);
+        } catch (err) {
+            console.error("Error fetching community details:", err);
+            setError("Failed to load community details.");
+        } finally {
+            setLoading(false);
+        }
     };
 
-    const posts = [
-        {
-            id: 1,
-            title: 'Best practices for React hooks in 2024',
-            content: 'What are your favorite React hooks patterns and best practices?',
-            author: 'reactdev',
-            upvotes: 42,
-            comments: 12,
-            timeAgo: '2 hours ago',
-            tags: ['React', 'JavaScript']
-        },
-        // Add more posts here
-    ];
+    const getPost = async () =>{
+        const response = await axios.get(`http://localhost:5000/api/v1/post/community/${communityInfo._id}`);
+        console.log(response.data);
+        setPosts(response.data);
+    }
+    useEffect(() => {
+        getCommunityDetails(id);
+        getPost();
+    }, [id]);
 
     const handlePostSubmit = (postData) => {
-        console.log('New post:', postData);
+        console.log("New post:", postData);
         setIsCreatingPost(false);
     };
+    
+    if (loading) return <div className="loading">Loading community details...</div>;
+    if (error) return <div className="error">{error}</div>;
 
     return (
         <div className="community-page">
-            <div className="community-banner" style={{ backgroundImage: `url(${communityInfo.banner})` }}>
-                <div className="banner-overlay" />
-                <div className="community-info">
-                    <h1>{communityInfo.name}</h1>
-                    <p className="description">{communityInfo.description}</p>
-                    <div className="community-stats">
-                        <div className="stat">
-                            <span className="stat-value">{communityInfo.members.toLocaleString()}</span>
-                            <span className="stat-label">Members</span>
+            {communityInfo && (
+                <div className="community-banner" style={{ backgroundImage: `url(${communityInfo?.banner || ""})` }}>
+                    <div className="banner-overlay" />
+                    <div className="community-info">
+                        <h1>{communityInfo?.name || "Community Name"}</h1>
+                        <p className="description">{communityInfo?.description || "No description available"}</p>
+                        <div className="community-tags">
+                            {communityInfo?.tags?.length ? (
+                                communityInfo.tags.map((tag) => <span key={tag} className="tag" >{tag}</span>)
+                            ) : (
+                                <p>No tags available</p>
+                            )}
                         </div>
-                        <div className="stat">
-                            <span className="stat-value">{communityInfo.online.toLocaleString()}</span>
-                            <span className="stat-label">Online</span>
-                        </div>
-                        <div className="stat">
-                            <span className="stat-value">Created {communityInfo.createdAt}</span>
-                        </div>
-                    </div>
-                    <div className="community-tags">
-                        {communityInfo.tags.map(tag => (
-                            <span key={tag} className="tag">{tag}</span>
-                        ))}
                     </div>
                 </div>
-            </div>
-
-            <div className="community-content">
-                <div className="posts-list">
-                    {posts.map(post => (
+            )}
+            {/* <div className="community-content">
+                <div className="posts-list"> */}
+                    {/* Dummy Posts */}
+                    {/* {posts && posts.map((post) => (
                         <div key={post.id} className="post-card">
                             <div className="vote-buttons">
                                 <button><i className="fas fa-arrow-up"></i></button>
@@ -77,39 +76,31 @@ const CommunityPage = () => {
                                 <h3>{post.title}</h3>
                                 <p>{post.content}</p>
                                 <div className="post-tags">
-                                    {post.tags.map(tag => (
-                                        <span key={tag} className="tag">{tag}</span>
+                                    {post.tags.map((tag) => (
+                                        <span key={tag} className="tag" onClick={()=>{
+
+                                        }}>{tag}</span>
                                     ))}
                                 </div>
                                 <div className="post-meta">
                                     <span>Posted by u/{post.author}</span>
                                     <span>{post.timeAgo}</span>
-                                    <button>
-                                        <i className="fas fa-comment"></i>
-                                        {post.comments} Comments
-                                    </button>
-                                    <button>
-                                        <i className="fas fa-share"></i>
-                                        Share
-                                    </button>
+                                    <button><i className="fas fa-comment"></i> {post.comments} Comments</button>
+                                    <button><i className="fas fa-share"></i> Share</button>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </div>
-            </div>
+            </div> */}
 
-            <button 
-                className="create-post-fab"
-                onClick={() => setIsCreatingPost(true)}
-                title="Create Post"
-            >
+            {/* <button className="create-post-fab" onClick={() => setIsCreatingPost(true)} title="Create Post">
                 <i className="fas fa-plus"></i>
-            </button>
+            </button> */}
 
             <PostCreator 
                 onSubmit={handlePostSubmit}
-                communityName={communityInfo.name}
+                communityName={communityInfo?.name || ""}
                 isOpen={isCreatingPost}
                 onClose={() => setIsCreatingPost(false)}
             />
@@ -117,4 +108,4 @@ const CommunityPage = () => {
     );
 };
 
-export default CommunityPage; 
+export default CommunityPage;
