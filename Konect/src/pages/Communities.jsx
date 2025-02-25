@@ -12,17 +12,6 @@ const Communities = () => {
         } 
         getCommunity();
     },[])
-    // const communities = [
-    //     {
-    //         id: 'frontend',
-    //         name: 'Frontend Development',
-    //         members: 1234,
-    //         description: 'A community for frontend developers to share knowledge, ask questions, and discuss latest trends in web development.',
-    //         icon: '🎨'
-    //     },
-    //     // Add more communities here
-    // ];
-
     return (
         <div className="communities-page">
             <div className="communities-header">
@@ -34,7 +23,7 @@ const Communities = () => {
 
             <div className="communities-grid">
                 {communities && communities.map((community , index)=> (
-                    <Link to={`/community/${community.id}`} key={index} className="community-card">
+                    <Link to={`/community/${community._id}`} key={index} className="community-card">
                         <div className="community-icon">{community.icon}</div>
                         <div className="community-info">
                             <h3>{community.name}</h3>
