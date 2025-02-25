@@ -1,26 +1,64 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 
 const Register = () => {
-    const handleSubmit = (e) => {
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        
         const username = e.target.username.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         const yearOfStudy = e.target.yearOfStudy.value;
 
         if (!username || !email || !password || !yearOfStudy) {
-            alert('Please fill in all fields');
+            setError('Please fill in all fields');
             return;
         }
 
         if (!isValidEmail(email)) {
-            alert('Please enter a valid email address');
+            setError('Please enter a valid email address');
             return;
         }
 
-        console.log('Registration attempt:', { username, email, password, yearOfStudy });
+        if (password.length < 6) {
+            setError('Password must be at least 6 characters long');
+            return;
+        }
+
+        try {
+            const response = await fetch('http://localhost:5000/api/v1/auth/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password,
+                    yearOfStudy: parseInt(yearOfStudy)
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Registration failed');
+            }
+
+            // Save token and user data to localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            // Redirect to dashboard
+            navigate('/dashboard');
+        } catch (error) {
+            setError(error.message || 'Registration failed. Please try again.');
+        }
     };
 
     const isValidEmail = (email) => {
@@ -58,6 +96,7 @@ const Register = () => {
                 <div className="form-box">
                     <h2>Create Account</h2>
                     <form onSubmit={handleSubmit}>
+                        {error && <div className="error-message">{error}</div>}
                         <div className="input-group">
                             <label htmlFor="username">Username</label>
                             <input type="text" id="username" name="username" required />
@@ -68,7 +107,7 @@ const Register = () => {
                         </div>
                         <div className="input-group">
                             <label htmlFor="password">Password</label>
-                            <input type="password" id="password" name="password" required />
+                            <input type="password" id="password" name="password" required minLength="6" />
                         </div>
                         <div className="input-group">
                             <label htmlFor="yearOfStudy">Year of Study</label>
@@ -82,7 +121,7 @@ const Register = () => {
                         </div>
                         <button type="submit" className="submit-btn">Create Account</button>
                         <p className="switch-page">
-                            Already have an account?<Link to="/login">Sign in</Link>
+                            Already have an account? <Link to="/login">Sign in</Link>
                         </p>
                     </form>
                 </div>
