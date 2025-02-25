@@ -1,24 +1,52 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Auth.css';
 
 const Login = () => {
-    const handleSubmit = (e) => {
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError('');
+        
         const email = e.target.email.value;
         const password = e.target.password.value;
 
         if (!email || !password) {
-            alert('Please fill in all fields');
+            setError('Please fill in all fields');
             return;
         }
 
         if (!isValidEmail(email)) {
-            alert('Please enter a valid email address');
+            setError('Please enter a valid email address');
             return;
         }
 
-        console.log('Login attempt:', { email, password });
+        try {
+            const response = await fetch('http://localhost:5000/api/v1/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Login failed');
+            }
+
+            // Save token and user data to localStorage
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', JSON.stringify(data.user));
+
+            // Redirect to dashboard
+            navigate('/dashboard');
+        } catch (error) {
+            setError(error.message || 'Login failed. Please try again.');
+        }
     };
 
     const isValidEmail = (email) => {
@@ -56,6 +84,7 @@ const Login = () => {
                 <div className="form-box">
                     <h2>Welcome back</h2>
                     <form onSubmit={handleSubmit}>
+                        {error && <div className="error-message">{error}</div>}
                         <div className="input-group">
                             <label htmlFor="email">Email address</label>
                             <input type="email" id="email" name="email" required />
@@ -66,7 +95,7 @@ const Login = () => {
                         </div>
                         <button type="submit" className="submit-btn">Sign in</button>
                         <p className="switch-page">
-                            New to Community Hub?<Link to="/register">Create an account</Link>
+                            New to Community Hub? <Link to="/register">Create an account</Link>
                         </p>
                     </form>
                 </div>

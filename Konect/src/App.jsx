@@ -15,16 +15,33 @@ import Dashboard from "./pages/Dashboard";
 import Communities from "./pages/Communities";
 import CommunityPage from "./pages/CommunityPage";
 import About from "./pages/About";
-import Groups from './pages/Groups';
-import Events from './pages/Events';
+import Groups from "./pages/Groups";
+import Events from "./pages/Events";
+import AIAssistant from "./components/AIAssistant";
 
 function App() {
   return (
     <Router>
       <div className="app-container">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/login"
+            element={
+              <>
+                <Login />
+                <AIAssistant />
+              </>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <>
+                <Register />
+                <AIAssistant />
+              </>
+            }
+          />
           <Route
             path="/communities"
             element={
@@ -34,6 +51,7 @@ function App() {
                   <Sidebar />
                   <Communities />
                 </div>
+                <AIAssistant />
               </>
             }
           />
@@ -46,6 +64,7 @@ function App() {
                   <Sidebar />
                   <CommunityPage />
                 </div>
+                <AIAssistant />
               </>
             }
           />
@@ -58,6 +77,7 @@ function App() {
                   <Sidebar />
                   <Dashboard />
                 </div>
+                <AIAssistant />
               </>
             }
           />
@@ -70,6 +90,7 @@ function App() {
                   <Sidebar />
                   <Events />
                 </div>
+                <AIAssistant />
               </>
             }
           />
@@ -82,6 +103,7 @@ function App() {
                   <Sidebar />
                   <About />
                 </div>
+                <AIAssistant />
               </>
             }
           />
@@ -94,6 +116,7 @@ function App() {
                   <Sidebar />
                   <Groups />
                 </div>
+                <AIAssistant />
               </>
             }
           />
